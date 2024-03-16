@@ -3,16 +3,20 @@
 import { useRouter } from 'next/navigation';
 import { useState, useContext } from 'react';
 import DataContext from '../../Data/DataContext'; // Update path accordingly
-
+import styleImage from '../../style/imageupload.module.css'
 const CreateCategory = () => {
   const router = useRouter();
   const { createCategory } = useContext(DataContext); // Access createCategory function from context
   const [name, setName] = useState('');
   const [image, setImage] = useState(null);
   const [selectedValue, setSelectedValue] = useState(''); // State for dropdown value
+  const [imagePreview, setImagePreview] = useState(null);
+
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]); 
+    const selectedImage = e.target.files[0];
+    setImage(selectedImage);
+    setImagePreview(URL.createObjectURL(selectedImage));
   };
 
   const handleSubmit = async (event) => {
@@ -30,7 +34,7 @@ const CreateCategory = () => {
         setName('');
         setImage(null);
         setSelectedValue('');
-        router.push('/services');
+        router.push('/category');
       } else {
         console.error("Failed to create category");
       }
@@ -48,21 +52,32 @@ const CreateCategory = () => {
   };
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div className={styleImage.main}>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={name} onChange={handleInputChange} />
+      <h2>Add Category</h2>
+        <input type="text" value={name} onChange={handleInputChange}  placeholder='Enter Category Name'/>
+        <span>Please select image in square format or 1024 * 1024px</span>
         <input type="file" accept="image/*" onChange={handleImageChange} name='categoryImage'/>
 
         {/* Dropdown for selecting a value */}
         <select value={selectedValue} onChange={handleSelectChange}>
-          <option value="">Select...</option>
-          <option value="value1">Value 1</option>
-          <option value="value2">Value 2</option>
-          <option value="value3">Value 3</option>
+          <option value="">Select Position</option>
+          <option value="Most Discounted">Most Discounted</option>
+          <option value="Most Booked">Most Booked</option>
+          <option value="Upload Service">Upload Service</option>
         </select>
 
         <button type="submit">Submit</button>
       </form>
+
+
+      {/* Image preview */}
+      {imagePreview && (
+        <div>
+          <h2>Selected Image Preview:</h2>
+          <img src={imagePreview} alt="Selected" style={{ width:'300px', height:'300px' }} />
+        </div>
+      )}
     </div>
   );
 };

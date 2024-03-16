@@ -10,6 +10,8 @@ import { IoHelpCircleSharp } from "react-icons/io5";
 import { FaRegImages } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { MdCleanHands } from "react-icons/md";
+import { BiCategory } from "react-icons/bi";
+import { IoHome } from "react-icons/io5";
 // Icon Linking end
 
 
@@ -20,11 +22,17 @@ function SideNavbar() {
     
       <div className={sideNav.main}>
         <div className={sideNav.logo}>
-          <Image src={Logo} />
+          <Image src={Logo}  alt="logo"/>
         </div>
 
         <div className={sideNav.menuBar}>
           <ul>
+            <li>
+              <IoHome size={20}/>
+              <Link href={"/"}>
+                Home
+              </Link>
+            </li>
             <li>
               <FaBookmark size={20}/>
               <Link href={"/booking"}>
@@ -38,9 +46,15 @@ function SideNavbar() {
               </Link>
             </li>
             <li>
+              <BiCategory size={20}/>
+              <Link href={"/category"}>
+                Category
+              </Link>
+            </li>
+            <li>
               <MdCleanHands size={20}/>
               <Link href={"/services"}>
-                Services 
+                Services
               </Link>
             </li>
             <li>
