@@ -53,7 +53,7 @@ const Category = () => {
                   </tr>
                 ) : (
                   services.map((service, index) => {
-                    let categoryImage = `http://localhost:5000/categoryicon/${service.categoryImage}`;
+                    let categoryImage = `http://77.37.47.56:5000/categoryicon/${service.categoryImage}`;
                     return (
 
                       <tr key={index}>

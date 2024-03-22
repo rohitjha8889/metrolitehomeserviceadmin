@@ -68,7 +68,7 @@ const Banner = () => {
                     </tr>
                   ) : (
                     banner.map((bannerItem, index) => {
-                      let bannerUrl = `http://localhost:5000/allposter/${bannerItem.poster}`;
+                      let bannerUrl = `http://77.37.47.56:5000/allposter/${bannerItem.poster}`;
                       return (
                         <tr key={index}>
                           <td style={{ width: "5%", textAlign: "center" }}>{index + 1}</td>

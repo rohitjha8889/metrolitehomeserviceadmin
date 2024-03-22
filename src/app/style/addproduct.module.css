@@ -75,3 +75,31 @@
 .statusbox label{
     margin-right: 20px;
 }
+
+.productImagesContainer{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.imagePreview{
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    /* border: 2px solid red; */
+    justify-content: center;
+    align-items: center;
+}
+
+.imagePreview button{
+    margin-top: 10px;
+    padding: 5px 10px;
+    /* width: 80px; */
+
+}
+.addedImage{
+    display: flex;
+    justify-content: space-between;
+}

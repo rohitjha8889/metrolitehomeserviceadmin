@@ -58,7 +58,7 @@ const Services = () => {
                   </tr>
                 ) : (
                   allproducts.map((product, index) => {
-                    let productImage = `http://localhost:5000/productimage/${product.image}`;
+                    let productImage = `http://77.37.47.56:5000/productimage/${product.images[1]}`;
                     return (
                       <tr key={index}>
                         <td style={{ width: "5%", textAlign: "center" }}>
@@ -104,7 +104,15 @@ const Services = () => {
                               cursor: "pointer",
                               marginRight: "10px"
                             }}>
+                              <Link href={{
+                                pathname:"/services/updateproduct",
+                                query:{
+                                  productId:`${product._id}`
+                                }
+                              }}>
+                              
                             <FaEdit/>
+                              </Link>
                           </button>
                           <button className={styleComplaint.deleteBtn} onClick={()=>handleDelete(product._id)}>
                             <MdDelete />

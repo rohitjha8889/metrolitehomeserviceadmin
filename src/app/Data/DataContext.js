@@ -29,7 +29,7 @@ export const DataProvider = ({ children }) => {
 
   const fetchBanner = async () => {
     try {
-      const response = await fetch('http://localhost:5000/allposter');
+      const response = await fetch('http://77.37.47.56:5000/allposter');
       if (!response.ok) {
         throw new Error('Failed to fetch banners');
       }
@@ -42,7 +42,7 @@ export const DataProvider = ({ children }) => {
 
   const deleteBanner = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/deleteposter/${id}`, {
+      const response = await fetch(`http://77.37.47.56:5000/deleteposter/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -56,7 +56,7 @@ export const DataProvider = ({ children }) => {
 
   const uploadBanner = async (formData) => {
     try {
-      const response = await fetch("http://localhost:5000/uploadposter", {
+      const response = await fetch("http://77.37.47.56:5000/uploadposter", {
         method: "POST",
         body: formData,
       });
@@ -77,7 +77,7 @@ export const DataProvider = ({ children }) => {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch('http://localhost:5000/allcategories');
+      const response = await fetch('http://77.37.47.56:5000/allcategories');
       if (!response.ok) {
         throw new Error('Failed to fetch services');
       }
@@ -90,7 +90,7 @@ export const DataProvider = ({ children }) => {
 
   const fetchSubServices = async (clientId) => {
     try {
-      const response = await fetch(`http://localhost:5000/categories/${clientId}/children`);
+      const response = await fetch(`http://77.37.47.56:5000/categories/${clientId}/children`);
       if (!response.ok) {
         throw new Error('Failed to fetch sub-services');
       }
@@ -104,7 +104,7 @@ export const DataProvider = ({ children }) => {
 
   const fetchServiceById = async (clientId) => {
     try {
-      const response = await fetch(`http://localhost:5000/categories/${clientId}`);
+      const response = await fetch(`http://77.37.47.56:5000/categories/${clientId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch specific category');
       }
@@ -118,7 +118,7 @@ export const DataProvider = ({ children }) => {
 
   const deleteCategory = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/deletecategory/${id}`, {
+      const response = await fetch(`http://77.37.47.56:5000/deletecategory/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -132,7 +132,7 @@ export const DataProvider = ({ children }) => {
   };
   const deleteSubCategory = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/deletecategory/${id}`, {
+      const response = await fetch(`http://77.37.47.56:5000/deletecategory/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -149,7 +149,7 @@ export const DataProvider = ({ children }) => {
 
   const createCategory = async (formData) => {
     try {
-      const response = await fetch("http://localhost:5000/categories", {
+      const response = await fetch("http://77.37.47.56:5000/categories", {
         method: "POST",
         body: formData,
       });
@@ -170,7 +170,7 @@ export const DataProvider = ({ children }) => {
 
   const fetchLastChildById = async (categoryId) => {
     try {
-      const response = await fetch(`http://localhost:5000/last-level-children/${categoryId}`);
+      const response = await fetch(`http://77.37.47.56:5000/last-level-children/${categoryId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch sub-services');
       }
@@ -190,7 +190,7 @@ export const DataProvider = ({ children }) => {
     try {
 
 
-      const response = await fetch("http://localhost:5000/addproduct", {
+      const response = await fetch("http://77.37.47.56:5000/addproduct", {
         method: "POST",
         body: formData,
       });
@@ -214,7 +214,7 @@ export const DataProvider = ({ children }) => {
 
   const fetchAllProduct = async () => {
     try {
-      const response = await fetch('http://localhost:5000/getallproduct');
+      const response = await fetch('http://77.37.47.56:5000/getallproduct');
       if (!response.ok) {
         throw new Error('Failed to fetch all product');
       }
@@ -229,7 +229,7 @@ export const DataProvider = ({ children }) => {
 
   const fetchProductById = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5000/getproduct/${productId}`);
+      const response = await fetch(`http://77.37.47.56:5000/getproduct/${productId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch specific category');
       }
@@ -243,7 +243,7 @@ export const DataProvider = ({ children }) => {
 
   const deleteProduct = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/deleteproduct/${id}`, {
+      const response = await fetch(`http://77.37.47.56:5000/deleteproduct/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -256,11 +256,32 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+
+  const modifyProduct = async (productId, formData) => {
+    try {
+      const response = await fetch(`http://77.37.47.56:5000/modifyproduct/${productId}`, {
+        method: 'PUT', // Assuming the API uses PUT for modification
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to modify product');
+      }
+
+      
+      fetchAllProduct(); 
+    } catch (error) {
+      console.error('Error modifying product:', error);
+    }
+  };
   
   
 
   return (
-    <DataContext.Provider value={{ banner, deleteBanner, uploadBanner, services, fetchSubServices, subServices, createCategory, fetchServiceById, category, deleteCategory, deleteSubCategory, fetchLastChildById, lastchild, addProduct, allproducts, fetchProductById, singleProduct, deleteProduct }}>
+    <DataContext.Provider value={{ banner, deleteBanner, uploadBanner, services, fetchSubServices, subServices, createCategory, fetchServiceById, category, deleteCategory, deleteSubCategory, fetchLastChildById, lastchild, addProduct, allproducts, fetchProductById, singleProduct, deleteProduct, modifyProduct }}>
       {children}
     </DataContext.Provider>
   );

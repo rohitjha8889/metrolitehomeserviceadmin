@@ -22,7 +22,7 @@ const ProductView = ({ params }) => {
         fetchServiceById(singleProduct.selectedCategory)
         const fetchSubServiceById = async (clientId) => {
             try {
-              const response = await fetch(`http://localhost:5000/categories/${clientId}`);
+              const response = await fetch(`http://77.37.47.56:5000/categories/${clientId}`);
               if (!response.ok) {
                 throw new Error('Failed to fetch specific category');
               }
@@ -38,14 +38,18 @@ const ProductView = ({ params }) => {
     },[singleProduct])
 
    
-    const imageUrl = `http://localhost:5000/productimage/${singleProduct.image}`;
+    const renderImages = () => {
+        return singleProduct.images.map((imageName, index) => (
+            <img key={index} src={`http://77.37.47.56:5000/productimage/${imageName}`} alt={`Image ${index}`} className={addproductstyle.productImage} />
+        ));
+    };
 
     return (
         <div className={addproductstyle.main}>
             <form>
                 <h2>Product Detail</h2>
-                <div>
-                    <img src={imageUrl} alt="Preview" className={addproductstyle.productImage} />
+                <div className={addproductstyle.productImagesContainer}>
+                {singleProduct.images && renderImages()}
                 </div>
 
                 <div className={addproductstyle.categorySelect}>
