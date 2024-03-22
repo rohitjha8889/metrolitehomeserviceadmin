@@ -5,6 +5,7 @@ import addproductstyle from "../../style/addproduct.module.css";
 import DataContext from "../../Data/DataContext";
 import { useRouter } from 'next/navigation';
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 const ProductView = ({ params }) => {
     const router = useRouter();
@@ -16,7 +17,7 @@ const ProductView = ({ params }) => {
     useEffect(() => {
         fetchProductById(id);
         
-    }, [id]);
+    }, [id, fetchProductById]);
 
     useEffect(()=>{
         fetchServiceById(singleProduct.selectedCategory)
@@ -35,12 +36,12 @@ const ProductView = ({ params }) => {
           }
 
           fetchSubServiceById(singleProduct.selectedSubCategory)
-    },[singleProduct])
+    },[singleProduct, fetchServiceById])
 
    
     const renderImages = () => {
         return singleProduct.images.map((imageName, index) => (
-            <img key={index} src={`http://77.37.47.56:5000/productimage/${imageName}`} alt={`Image ${index}`} className={addproductstyle.productImage} />
+            <Image key={index} src={`http://77.37.47.56:5000/productimage/${imageName}`} alt={`Image ${index}`} className={addproductstyle.productImage}  width={300} height={200}/>
         ));
     };
 

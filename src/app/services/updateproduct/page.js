@@ -4,6 +4,7 @@ import addproductstyle from "../../style/addproduct.module.css";
 import DataContext from "../../Data/DataContext";
 import { useRouter } from 'next/navigation'; // Importing 'next/router' instead of 'next/navigation'
 import { useSearchParams } from 'next/navigation'; // Importing 'next/router' instead of 'next/navigation'
+import Image from "next/image";
 
 const UpdateProduct = () => {
     const router = useRouter();
@@ -26,7 +27,7 @@ const UpdateProduct = () => {
 
     useEffect(() => {
         fetchProductById(productId)
-    }, [productId])
+    }, [productId, fetchProductById])
 
     useEffect(() => {
         if (singleProduct) {
@@ -79,7 +80,7 @@ const UpdateProduct = () => {
 
     const renderImages = () => {
         return singleProduct.images.map((imageName, index) => (
-            <img key={index} src={`http://77.37.47.56:5000/productimage/${imageName}`} alt={`Image ${index}`} className={addproductstyle.productImage} />
+            <Image key={index} src={`http://77.37.47.56:5000/productimage/${imageName}`} alt={`Image ${index}`} width={300} height={200} className={addproductstyle.productImage} />
         ));
     };
 

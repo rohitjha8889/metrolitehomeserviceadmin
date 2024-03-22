@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import DataContext from '../Data/DataContext'; // Import DataContext
 import styleImage from '../style/imageupload.module.css'
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const UploadImage = () => {
   const { uploadBanner } = useContext(DataContext); // Consume DataContext
@@ -101,7 +102,7 @@ const UploadImage = () => {
         </button>
       </form>
 
-      {imageUrl && <img src={imageUrl} alt="Preview" style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '10px' }} />} {/* Show image preview */}
+      {imageUrl && <Image src={imageUrl} alt="Preview" width={300} height={200} style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '10px' }} />} {/* Show image preview */}
       {errorMessage && <p>{errorMessage}</p>}
     </div>
   );

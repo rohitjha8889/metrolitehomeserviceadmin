@@ -4,7 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import addproductstyle from "../../style/addproduct.module.css";
 import DataContext from "../../Data/DataContext";
 import { useRouter } from 'next/navigation';
-
+import Image from "next/image";
 
 const AddProduct = () => {
     const router = useRouter()
@@ -159,7 +159,7 @@ const AddProduct = () => {
                         <div className={addproductstyle.addedImage}>
                         {imagePreviews.map((preview, index) => (
                             <div key={index} className={addproductstyle.imagePreview}>
-                                <img src={preview} alt="Preview" />
+                                <Image src={preview} alt="Preview" width={300} height={200}/>
                                 <button type="button" onClick={() => handleRemoveImage(index)}>Remove</button>
                             </div>
                         ))}

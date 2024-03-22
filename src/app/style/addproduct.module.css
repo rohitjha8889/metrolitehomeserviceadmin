@@ -96,10 +96,12 @@
 .imagePreview button{
     margin-top: 10px;
     padding: 5px 10px;
+    margin-bottom: 20px;
     /* width: 80px; */
 
 }
 .addedImage{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }

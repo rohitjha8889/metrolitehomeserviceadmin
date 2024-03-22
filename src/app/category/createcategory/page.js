@@ -1,5 +1,5 @@
 "use client";
-
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useContext } from 'react';
 import DataContext from '../../Data/DataContext'; // Update path accordingly
@@ -75,7 +75,7 @@ const CreateCategory = () => {
       {imagePreview && (
         <div>
           <h2>Selected Image Preview:</h2>
-          <img src={imagePreview} alt="Selected" style={{ width:'300px', height:'300px' }} />
+          <Image src={imagePreview} alt="Selected" style={{ width:'300px', height:'300px' }} width={300} height={300}/>
         </div>
       )}
     </div>

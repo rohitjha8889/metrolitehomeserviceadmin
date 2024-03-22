@@ -1,11 +1,11 @@
 "use client";
-
+import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DataContext from '../../../Data/DataContext';
 import styleImage from '../../../style/imageupload.module.css'
 
-const createSubCategory = ({ params }) => {
+const CreateSubCategory = ({ params }) => {
   const router = useRouter();
   const { createCategory } = useContext(DataContext);
   const [name, setName] = useState('');
@@ -64,11 +64,11 @@ const createSubCategory = ({ params }) => {
       {imagePreview && (
         <div>
           <h2>Selected Image Preview:</h2>
-          <img src={imagePreview} alt="Selected" style={{ width:'300px', height:'300px' }} />
+          <Image src={imagePreview} alt="Selected" style={{ width:'300px', height:'300px' }}  width={300} height={300}/>
         </div>
       )}
     </div>
   );
 };
 
-export default createSubCategory;
+export default CreateSubCategory;

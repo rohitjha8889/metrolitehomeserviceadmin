@@ -19,7 +19,7 @@ const Subcategory = ({ params }) => {
     fetchSubServices(clientId);
     fetchServiceById(clientId)
     // console.log(category)
-  }, [clientId])
+  }, [clientId, fetchServiceById, fetchSubServices])
 
   return (
     <>
