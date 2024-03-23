@@ -97,7 +97,7 @@ const Services = () => {
                             </Link>
                           </button>
 
-                          <button  style={{
+                          {/* <button  style={{
                               all: "unset",
                               fontSize: "1.5rem",
                               color: "#001884",
@@ -113,7 +113,7 @@ const Services = () => {
                               
                             <FaEdit/>
                               </Link>
-                          </button>
+                          </button> */}
                           <button className={styleComplaint.deleteBtn} onClick={()=>handleDelete(product._id)}>
                             <MdDelete />
                           </button>
